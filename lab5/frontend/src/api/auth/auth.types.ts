@@ -1,4 +1,4 @@
-export type UserRoleType = "admin" | "user"
+export type UserRoleType = "admin" | "user";
 
 export type LoginType = {
 	name: string;
@@ -7,12 +7,13 @@ export type LoginType = {
 
 export type LoginReturnType = {
 	accessToken: string;
-  role: UserRoleType
+	role: UserRoleType;
 };
 
 export type RegisterReturnType = {
 	message: string;
 	accessToken: string;
+	role: UserRoleType;
 };
 
 export type RegisterType = {
@@ -26,7 +27,7 @@ export type AdminDataType = {
 };
 
 export type AdminDataReturnType = {
-  userInfo: object
+	userInfo: object;
 };
 
 export type UserDataType = {
@@ -34,5 +35,5 @@ export type UserDataType = {
 };
 
 export type UserDataReturnType = {
-  userInfo: object
+	userInfo: object;
 };

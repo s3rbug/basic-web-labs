@@ -53,7 +53,7 @@ app.post("/register", async (req: Request, res: Response) => {
 		const accessToken = generateToken(user, process.env.ACCESS_TOKEN_SECRET);
 		res
 			.status(201)
-			.send({ message: `User '${user.name}' created`, accessToken });
+			.send({ message: `User '${user.name}' created`, accessToken, role: user.role });
 	} catch {
 		res.status(500).send();
 	}

@@ -33,9 +33,10 @@ export const authApi = {
 	register: async ({
 		name,
 		password,
+		role
 	}: RegisterType): Promise<RegisterReturnType> => {
 		const response = await fetch(`${CONFIG.BASE_URL}/register`, {
-			body: JSON.stringify({ name, password }),
+			body: JSON.stringify({ name, password, role }),
 			headers: {
 				"Content-Type": "application/json",
 			},
