@@ -1,0 +1,39 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#container {
+	height: 100vh;
+}
+
+#container * {
+	overflow: hidden;
+	height: calc(100% / 3);
+  width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#first-image, #first-text {
+  width: 50%;
+}
+
+#first-image {
+	float: left;
+}
+
+#first-text {
+	background-color: #239ec6;
+}
+
+#second-text {
+	background-color: #8fecf8;
+}
+
+#first-text, #second-text {
+  color: white;
+  font-size: 2rem;
+}

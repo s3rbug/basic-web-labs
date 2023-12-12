@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #808080;
+}
+
+#download {
+  color: white;
+  border: 3px solid #484C51;
+  border-radius: 5px;
+  padding: 7px 12px;
+  cursor: pointer;
+  background-color: #343A40;
+}
+
+#message {
+  font-size: 30px;
+  color: #1B2025;
+  padding-bottom: 5px;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+img {
+  width: 300px;
+}
+
+.item div {
+  color: white;
+  padding: 16px
+}
+
+.item {
+  background-color: #343A40;
+  border: 1px solid black;
+}
