@@ -1,5 +1,13 @@
 export type UserRoleType = "admin" | "user";
 
+export type User = {
+	name?: string;
+	group?: string;
+	variant?: number;
+	phone?: string;
+	role?: string;
+};
+
 export type LoginType = {
 	name: string;
 	password: string;
@@ -27,7 +35,8 @@ export type AdminDataType = {
 };
 
 export type AdminDataReturnType = {
-	userInfo: object;
+	userInfo: User;
+	usersInfo: User[];
 };
 
 export type UserDataType = {
@@ -35,5 +44,14 @@ export type UserDataType = {
 };
 
 export type UserDataReturnType = {
-	userInfo: object;
+	userInfo: User;
+};
+
+export type DeleteUserType = {
+	accessToken: string;
+	userName: string;
+};
+
+export type DeleteUserReturnType = {
+	usersInfo: User[];
 };

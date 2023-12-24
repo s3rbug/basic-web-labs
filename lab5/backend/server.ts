@@ -301,6 +301,57 @@ app.get(
 	}
 );
 
+app.delete(
+	"/admin/delete-user/:username",
+	authenticateToken,
+	requireRole("admin"),
+	(req: Request, res: Response) => {
+		const usernameToDelete = req.params.username;
+
+		// Check if the admin is trying to delete their own account
+		if (usernameToDelete === req.user?.name) {
+			return res
+				.status(400)
+				.send({ message: "Admin cannot delete own account" });
+		}
+
+		// Delete the user by their name
+		db.run(
+			"DELETE FROM Users WHERE name = ?",
+			[usernameToDelete],
+			(err) => {
+				if (err) {
+					console.error(err);
+					return res.status(500).send({ message: "Server error" });
+				}
+
+				// Fetch the updated usersInfo after deletion
+				db.all("SELECT * FROM Users", (err, usersRows: User[]) => {
+					if (err) {
+						console.error(err);
+						return res
+							.status(500)
+							.send({ message: "Server error" });
+					}
+
+					const usersData = usersRows.map((userRow) => ({
+						name: userRow.name,
+						group: userRow.group,
+						variant: userRow.variant,
+						phone: userRow.phone,
+						role: userRow.role,
+					}));
+
+					res.status(200).send({
+						message: `User '${usernameToDelete}' deleted successfully`,
+						usersInfo: usersData,
+					});
+				});
+			}
+		);
+	}
+);
+
 app.get("/whoami", authenticateToken, (req: Request, res: Response) => {
 	res.json(req.user);
 });

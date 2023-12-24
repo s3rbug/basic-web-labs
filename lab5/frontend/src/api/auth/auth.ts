@@ -2,6 +2,8 @@ import { CONFIG } from "../config";
 import {
 	AdminDataReturnType,
 	AdminDataType,
+	DeleteUserReturnType,
+	DeleteUserType,
 	LoginReturnType,
 	LoginType,
 	RegisterReturnType,
@@ -33,7 +35,7 @@ export const authApi = {
 	register: async ({
 		name,
 		password,
-		role
+		role,
 	}: RegisterType): Promise<RegisterReturnType> => {
 		const response = await fetch(`${CONFIG.BASE_URL}/register`, {
 			body: JSON.stringify({ name, password, role }),
@@ -42,7 +44,7 @@ export const authApi = {
 			},
 			method: "POST",
 		});
-    if (!response.ok) {
+		if (!response.ok) {
 			if (response.status === 500) {
 				throw new Error("Server error");
 			}
@@ -60,7 +62,7 @@ export const authApi = {
 			},
 			method: "GET",
 		});
-    if (!response.ok) {
+		if (!response.ok) {
 			if (response.status === 500) {
 				throw new Error("Server error");
 			}
@@ -78,7 +80,29 @@ export const authApi = {
 			},
 			method: "GET",
 		});
-    if (!response.ok) {
+		if (!response.ok) {
+			if (response.status === 500) {
+				throw new Error("Server error");
+			}
+			throw new Error(response.statusText);
+		}
+		return response.json();
+	},
+	deleteUser: async ({
+		accessToken,
+		userName,
+	}: DeleteUserType): Promise<DeleteUserReturnType> => {
+		const response = await fetch(
+			`${CONFIG.BASE_URL}/admin/delete-user/${userName}`,
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${accessToken}`,
+				},
+				method: "DELETE",
+			}
+		);
+		if (!response.ok) {
 			if (response.status === 500) {
 				throw new Error("Server error");
 			}

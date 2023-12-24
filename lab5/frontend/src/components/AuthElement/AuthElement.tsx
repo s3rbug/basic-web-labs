@@ -51,7 +51,9 @@ export default function AuthElement({
 				<h1 className="flex justify-center text-2xl text-[#0065E5]">
 					{headerText}
 				</h1>
-				<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className="flex flex-col gap-4">
 					<input
 						placeholder="name"
 						className="outline-none border-[#E3E3E4] border-2 rounded-md p-2"
@@ -81,7 +83,7 @@ export default function AuthElement({
 								value: 20,
 								message: "Max password length is 20",
 							},
-              onChange: customOnChange,
+							onChange: customOnChange,
 						})}
 					/>
 					{<ErrorMessage message={errors?.password?.message} />}
@@ -97,14 +99,18 @@ export default function AuthElement({
 										return "Your passwords do not match";
 									}
 								},
-                onChange: customOnChange,
+								onChange: customOnChange,
 							})}
 						/>
 					)}
 					{isRegister && (
-						<ErrorMessage message={errors?.confirm_password?.message} />
+						<ErrorMessage
+							message={errors?.confirm_password?.message}
+						/>
 					)}
-					<ErrorMessage message={errors?.root?.serverError?.message} />
+					<ErrorMessage
+						message={errors?.root?.serverError?.message}
+					/>
 					{isRegister ? (
 						<RedirectBlock
 							infoText="Already have an account?"
